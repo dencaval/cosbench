@@ -26,18 +26,11 @@ import com.intel.cosbench.config.ConfigException;
 
 class BimodalIntGenerator implements IntGenerator {
 
-    private int lower;
-    private int upper;
     BimodalDistribution bimodalDistribution = null;
 
-    public BimodalIntGenerator(int lower, int upper,
-                               double mean1, double stdDeviation1,
+    public BimodalIntGenerator(double mean1, double stdDeviation1,
                                double mean2, double stdDeviation2,
                                double coinFlip) {
-        if (lower <= 0 || upper <= 0 || lower > upper)
-            throw new IllegalArgumentException();
-        this.lower = lower;
-        this.upper = upper;
         bimodalDistribution = new BimodalDistribution(mean1,
           stdDeviation1, mean2, stdDeviation2, coinFlip);
     }
@@ -66,14 +59,12 @@ class BimodalIntGenerator implements IntGenerator {
     private static BimodalIntGenerator tryParse(String pattern) {
         pattern = StringUtils.substringBetween(pattern, "(", ")");
         String[] args = StringUtils.split(pattern, ',');
-        int lower = Integer.parseInt(args[0]);
-        int upper = Integer.parseInt(args[1]);
-        double mean1 = Double.parseDouble(args[2]);
-        double stdDeviation1 = Double.parseDouble(args[3]);
-        double mean2 = Double.parseDouble(args[4]);
-        double stdDeviation2 = Double.parseDouble(args[5]);
-        double coinFlip = Double.parseDouble(args[6]);
-        return new BimodalIntGenerator(lower, upper, mean1, stdDeviation1,
+        double mean1 = Double.parseDouble(args[0]);
+        double stdDeviation1 = Double.parseDouble(args[1]);
+        double mean2 = Double.parseDouble(args[2]);
+        double stdDeviation2 = Double.parseDouble(args[3]);
+        double coinFlip = Double.parseDouble(args[4]);
+        return new BimodalIntGenerator(mean1, stdDeviation1,
           mean2, stdDeviation2, coinFlip);
     }
 
