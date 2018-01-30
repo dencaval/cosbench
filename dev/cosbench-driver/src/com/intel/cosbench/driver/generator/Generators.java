@@ -49,6 +49,10 @@ public class Generators {
             return generator;
         if ((generator = HistogramIntGenerator.parse(pattern)) != null)
             return generator;
+        if ((generator = ZipfIntGenerator.parse(pattern)) != null)
+            return generator;
+        if ((generator = BimodalIntGenerator.parse(pattern)) != null)
+            return generator;
         String msg = "unrecognized distribution: " + pattern;
         throw new ConfigException(msg);
     }
