@@ -257,7 +257,6 @@ class ZipfIntGenerator implements IntGenerator {
             return null;
         try {
             return tryParse(pattern);
-            return tryParse(pattern);
         } catch (Exception e) {
         }
         String msg = "illegal uniform distribution pattern: " + pattern;
