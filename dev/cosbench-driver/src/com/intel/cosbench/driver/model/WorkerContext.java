@@ -52,7 +52,8 @@ public class WorkerContext implements WorkerInfo {
     /* Each worker starts with an empty report */
     private volatile Report report = new Report();
     /* Each worker has its private random object so as to enhance performance */
-    private transient Random random = new Random(RandomUtils.nextLong());
+    private transient Random random = new Random(0);
+    //private transient Random random = new Random(RandomUtils.nextLong());
     /* Each worker has its private required version */
     private volatile int version = 0;
     private volatile int runlen = 0;
